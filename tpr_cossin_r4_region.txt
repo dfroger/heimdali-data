@@ -1,0 +1,8 @@
+plane 1, line 1
+0 0.960531
+plane 1, line 2
+0 0.902701
+plane 2, line 1
+0 0.960531
+plane 2, line 2
+0 0.902701
