@@ -1,9 +1,10 @@
 cmake_minimum_required( VERSION 2.8.5 )
 
-project( WriteHDF5Image )
-
 find_package( ITK REQUIRED )
 include( ${ITK_USE_FILE} )
 
-add_executable( WriteHDF5Image WriteHDF5Image.cxx )
-target_link_libraries( WriteHDF5Image ${ITK_LIBRARIES} )
+add_executable( WriteHDF5Imtest WriteHDF5Imtest.cxx )
+add_executable( WriteHDF5ZeroToOne WriteHDF5ZeroToOne.cxx )
+
+target_link_libraries( WriteHDF5Imtest ${ITK_LIBRARIES} )
+target_link_libraries( WriteHDF5ZeroToOne ${ITK_LIBRARIES} )
