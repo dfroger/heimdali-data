@@ -6,6 +6,8 @@ using namespace std;
 
 typedef float PixelType;
 
+unsigned int ZD=2, YD=1, XD=0;
+
 int main (int argc, char* argv[])
 {
     // Parse command line
@@ -26,9 +28,9 @@ int main (int argc, char* argv[])
     ImageType::IndexType start;
     start.Fill(0);
     ImageType::SizeType size;
-    size[2] = nz;
-    size[1] = ny;
-    size[0] = nx;
+    size[ZD] = nz;
+    size[YD] = ny;
+    size[XD] = nx;
     ImageType::RegionType region(start,size);
     ImageType::Pointer image = ImageType::New();
     image->SetRegions(region);
@@ -38,15 +40,15 @@ int main (int argc, char* argv[])
     // Set image pixel values.
     ImageType::IndexType pixelIndex;
     typedef itk::VariableLengthVector<double> VariableVectorType;
-    VariableVectorType variableLengthVector;
-    variableLengthVector.SetSize(nc);
-    for (int iz=0 ; iz < nz ; ++iz) { pixelIndex[2] = iz;
-    for (int iy=0 ; iy < ny ; ++iy) { pixelIndex[1] = iy;
-    for (int ix=0 ; ix < nx ; ++ix) { pixelIndex[0] = ix;
+    VariableVectorType value;
+    value.SetSize(nc);
+    for (int iz=0 ; iz < nz ; ++iz) { pixelIndex[ZD] = iz;
+    for (int iy=0 ; iy < ny ; ++iy) { pixelIndex[YD] = iy;
+    for (int ix=0 ; ix < nx ; ++ix) { pixelIndex[XD] = ix;
         for (int ic=0 ; ic < nc ; ++ic) {
-            variableLengthVector[ic] = iz*1000 + iy*100 + ix*10 + ic;
+            value[ic] = iz*1000 + iy*100 + ix*10 + ic;
         }
-        image->SetPixel(pixelIndex, variableLengthVector);
+        image->SetPixel(pixelIndex, value);
     }}}
 
     // Create writer.
